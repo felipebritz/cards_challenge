@@ -4,6 +4,7 @@ import './controllers/card_controller.dart';
 class App {
   void execute() {
     int option;
+    var cardController = CardController();
 
     do {
       print('MENU DE OPCOES:\n');
@@ -19,19 +20,19 @@ class App {
 
       switch (option) {
         case 1:
-          CardController().findAllCards();
+          cardController.findAllCards();
           break;
         case 2:
-          CardController().findCardById(cardId: 1);
+          cardController.findCardById(cardId: 1);
           break;
         case 3:
-          CardController().createCard();
+          cardController.createCard();
           break;
         case 4:
-          CardController().updateCard(cardId: 2);
+          cardController.updateCard(cardId: 2);
           break;
         case 5:
-          CardController().removeCard(cardId: 3);
+          cardController.removeCard(cardId: 3);
           break;
         default:
       }
