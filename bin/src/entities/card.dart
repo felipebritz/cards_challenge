@@ -12,4 +12,7 @@ class Card {
 
   Map<String, dynamic> toJson() =>
       {'id': id, 'title': title, 'content': content};
+
+  @override
+  String toString() => 'Id $id ... Title $title ... Content $content';
 }
