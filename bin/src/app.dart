@@ -2,12 +2,12 @@ import 'dart:io';
 import './controllers/card_controller.dart';
 
 class App {
-  void execute() {
+  void execute() async{
     int option;
     var cardController = CardController();
 
     do {
-      print('MENU DE OPCOES:\n');
+      print('\nMENU DE OPCOES:\n');
       print('1 - Buscar todos os cards');
       print('2 - Buscar cards pelo ID');
       print('3 - Criar card');
@@ -17,22 +17,23 @@ class App {
 
       stdout.writeln('Escolha a opção desejada: ');
       option = int.parse(stdin.readLineSync());
+      print('');
 
       switch (option) {
         case 1:
-          cardController.findAllCards();
+          await cardController.findAllCards();
           break;
         case 2:
-          cardController.findCardById(cardId: 1);
+          await cardController.findCardById();
           break;
         case 3:
-          cardController.createCard();
+          await cardController.createCard();
           break;
         case 4:
-          cardController.updateCard(cardId: 2);
+          await cardController.updateCard();
           break;
         case 5:
-          cardController.removeCard(cardId: 3);
+          await cardController.removeCard();
           break;
         default:
       }
