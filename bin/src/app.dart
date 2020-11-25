@@ -2,7 +2,7 @@ import 'dart:io';
 import './controllers/card_controller.dart';
 
 class App {
-  void execute() async{
+  void execute() async {
     int option;
     var cardController = CardController();
 
@@ -24,16 +24,43 @@ class App {
           await cardController.findAllCards();
           break;
         case 2:
-          await cardController.findCardById();
+          print('Recuperar card pelo ID');
+          print('Card ID: ');
+          var cardId = int.parse(stdin.readLineSync());
+
+          await cardController.findCardById(cardId: cardId);
           break;
         case 3:
-          await cardController.createCard();
+          print('Criar Card');
+          print('Title: ');
+          var title = stdin.readLineSync();
+          print('Content: ');
+          var content = stdin.readLineSync();
+          print('Criando card...');
+
+          await cardController.createCard(title: title, content: content);
           break;
         case 4:
-          await cardController.updateCard();
+          print('Atualizar card');
+          print('Card ID: ');
+          var cardId = int.parse(stdin.readLineSync());
+          print('Title: ');
+          var title = stdin.readLineSync();
+          print('Content: ');
+          var content = stdin.readLineSync();
+
+          await cardController.updateCard(
+            cardId,
+            title: title,
+            content: content,
+          );
           break;
         case 5:
-          await cardController.removeCard();
+          print('Remover card');
+          print('Card ID: ');
+          var cardId = int.parse(stdin.readLineSync());
+
+          await cardController.removeCard(cardId);
           break;
         default:
       }

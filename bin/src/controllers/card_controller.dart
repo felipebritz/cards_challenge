@@ -1,65 +1,46 @@
-import 'dart:io';
-
 import '../services/card_services.dart';
 
 class CardController {
   var cardService = CardService();
 
-  void findAllCards() async{
-    print('Lista dos cards');
-     
-    print(await cardService.findAll());
-  }
-
-  void findCardById() async{
-    print('Recuperar card pelo ID');
-
-    print('Card ID: ');
-    var cardId = int.parse(stdin.readLineSync());
-    
-    print(await cardService.findById(cardId));
-  }
-
-  void createCard() async{
-    print('Criar Card');
-    
-    print('Title: ');
-    var title = stdin.readLineSync();
-    
-    print('Content: ');
-    var content = stdin.readLineSync();
-
-    print('Criando card...');
-    print(await cardService.create(title, content));
-
-  }
-
-  void updateCard() async{
-    print('Atualizar card');
-
-    print('Card ID: ');
-    var cardId = int.parse(stdin.readLineSync());
-
-    print('Title: ');
-    var title = stdin.readLineSync();
-    
-    print('Content: ');
-    var content = stdin.readLineSync();
-
-    if(await cardService.update(cardId, title: title, content: content)){
-      print('Atualizado com sucesso');
-    } else {
-      print('Não foi possível atualizar o card');
+  void findAllCards() async {
+    try {
+      print(await cardService.findAll());
+    } catch (error) {
+      print(error);
     }
   }
 
-  void removeCard() async{
-    print('Remover card');
+  void findCardById({int cardId}) async {
+    try {
+      print(await cardService.findById(cardId));
+    } catch (error) {
+      print(error);
+    }
+  }
 
-    print('Card ID: ');
-    var cardId = int.parse(stdin.readLineSync());
+  void createCard({String title, String content}) async {
+    try {
+      print(await cardService.create(title, content));
+    } catch (error) {
+      print(error);
+    }
+  }
 
-    if(await cardService.delete(cardId)){
+  void updateCard(int cardId, {String title, String content}) async {
+    try {
+      if (await cardService.update(cardId, title: title, content: content)) {
+        print('Atualizado com sucesso');
+      } else {
+        print('Não foi possível atualizar o card');
+      }
+    } catch (error) {
+      print(error);
+    }
+  }
+
+  void removeCard(int cardId) async {
+    if (await cardService.delete(cardId)) {
       print('Removido com sucesso');
     } else {
       print('Não foi possível remover o card');

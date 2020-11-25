@@ -14,5 +14,5 @@ class Card {
       {'id': id, 'title': title, 'content': content};
 
   @override
-  String toString() => 'Id $id ... Title $title ... Content $content';
+  String toString() => '\n{Id: $id, Title: $title, Content: $content}';
 }
